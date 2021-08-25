@@ -38,8 +38,7 @@ const PhotoBox = ({ photo }) => {
             },
         },
         tap: {
-            scale: 1.5,
-            rotate: 0,
+            rotate: 360,
             zIndex: 1,
             transition: {
                 type: "spring",
@@ -47,7 +46,6 @@ const PhotoBox = ({ photo }) => {
             },
         },
         drag: {
-            scale: 1.5,
             zIndex: 1,
             velocity: 2
         }

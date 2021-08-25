@@ -1,3 +1,4 @@
+import Head from "next/head"
 import { Container, useColorMode } from "@chakra-ui/react"
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { AnimatePresence, motion } from "framer-motion"
@@ -53,6 +54,9 @@ export default function Slideshow({ photosData }) {
 
     return (
         <>
+            <Head>
+                <title>Gallery | Slideshow</title>
+            </Head>
             <Navbar>
                 <Container maxW="container.xl" centerContent>
                     <AnimatePresence initial={false} custom={direction}>

@@ -37,8 +37,7 @@ const LoadingPhotoBox = () => {
             },
         },
         tap: {
-            scale: 1.5,
-            rotate: 0,
+            rotate: 360,
             zIndex: 1,
             transition: {
                 type: "spring",
@@ -46,7 +45,6 @@ const LoadingPhotoBox = () => {
             },
         },
         drag: {
-            scale: 1.5,
             zIndex: 1,
             velocity: 2
         }

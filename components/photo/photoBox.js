@@ -44,10 +44,6 @@ const PhotoBox = ({ photo }) => {
                 type: "spring",
                 stiffness: 100
             },
-        },
-        drag: {
-            zIndex: 1,
-            velocity: 2
         }
     }
 
@@ -57,7 +53,6 @@ const PhotoBox = ({ photo }) => {
                 <AnimatePresence>
                     <m.div
                         layout
-                        drag
                         key={photo._id}
                         variants={variants}
                         initial="hidden"
@@ -65,9 +60,6 @@ const PhotoBox = ({ photo }) => {
                         exit="exit"
                         whileHover="hover"
                         whileTap="tap"
-                        whileDrag="drag"
-                        dragConstraints={{ top: -100, bottom: -100, left: -100, right: -100 }}
-                        dragElastic={1}
                         style={{
                             width: 300,
                             height: 300,

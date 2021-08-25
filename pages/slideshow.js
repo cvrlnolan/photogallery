@@ -3,15 +3,12 @@ import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { AnimatePresence, motion } from "framer-motion"
 import { wrap } from "popmotion"
 import { useState } from "react"
+import { client } from "@/mongodb/mongodbClient"
 import Navbar from "@/components/layout/navbar"
 
-const images = [
-    "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
-    "https://d33wubrfki0l68.cloudfront.net/49de349d12db851952c5556f3c637ca772745316/cfc56/static/images/wallpapers/bridge-02@2x.png",
-    "https://d33wubrfki0l68.cloudfront.net/594de66469079c21fc54c14db0591305a1198dd6/3f4b1/static/images/wallpapers/bridge-01@2x.png"
-]
+//Get album photos via Incremental Static Generation
 
-export default function Slideshow() {
+export default function Slideshow({ photosData }) {
 
     const { colorMode } = useColorMode()
 
@@ -47,7 +44,7 @@ export default function Slideshow() {
 
     const [[page, direction], setPage] = useState([0, 0])
 
-    const imageIndex = wrap(0, images.length, page);
+    const imageIndex = wrap(0, photosData.length, page);
 
     const paginate = (newDirection) => {
         setPage([page + newDirection, newDirection]);
@@ -61,7 +58,7 @@ export default function Slideshow() {
                     <AnimatePresence initial={false} custom={direction}>
                         <motion.img
                             key={page}
-                            src={images[imageIndex]}
+                            src={photosData[imageIndex].photoUrl}
                             custom={direction}
                             variants={variants}
                             initial="enter"
@@ -83,6 +80,9 @@ export default function Slideshow() {
                                     paginate(-1);
                                 }
                             }}
+                            style={{
+                                objectFit: "cover"
+                            }}
                         />
                     </AnimatePresence>
                     <motion.div className="next" onClick={() => paginate(1)}>
@@ -95,4 +95,19 @@ export default function Slideshow() {
             </Navbar>
         </>
     )
+}
+
+//Incremental Static Generation
+
+export async function getStaticProps() {
+    await client.connect()
+    const photos = await client.db(process.env.MONGODB_DATABASE).collection("photoAlbum").
+        find({}, { sort: { createdDate: -1 } }).toArray()
+    await client.close()
+    return {
+        props: {
+            photosData: JSON.parse(JSON.stringify(photos))
+        },
+        revalidate: 10,
+    }
 }

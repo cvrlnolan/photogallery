@@ -15,10 +15,6 @@ a {
   box-sizing: border-box;
 }
 
-.box_image {
-  border-radius: 10px;
-}
-
 .next,
 .prev {
   top: 25vh;

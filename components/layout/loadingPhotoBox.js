@@ -1,20 +1,17 @@
-import { Image } from "@chakra-ui/react"
 import { AnimatePresence, LazyMotion, domAnimation, m } from "framer-motion"
 
-const PhotoBox = ({ photo }) => {
+const LoadingPhotoBox = () => {
 
     const variants = {
         hidden: {
             opacity: 0,
             scale: 0.5,
-            x: -100,
             backgroundColor: "#bfdbf7"
         },
         visible: {
             opacity: 1,
             scale: 1,
             rotate: 360,
-            x: 0,
             backgroundColor: "#476c9b",
             transition: {
                 type: "spring",
@@ -23,6 +20,8 @@ const PhotoBox = ({ photo }) => {
                 mass: 0.5,
                 restDelta: 0.5,
                 delay: 0.3,
+                repeat: Infinity,
+                repeatType: "reverse"
             }
         },
         exit: {
@@ -60,7 +59,7 @@ const PhotoBox = ({ photo }) => {
                     <m.div
                         layout
                         drag
-                        key={photo._id}
+                        key={Math.random()}
                         variants={variants}
                         initial="hidden"
                         animate="visible"
@@ -76,14 +75,6 @@ const PhotoBox = ({ photo }) => {
                             borderRadius: 15
                         }}
                     >
-                        <Image
-                            src={photo.photoUrl}
-                            alt="photo"
-                            w="300px"
-                            h="300px"
-                            objectFit="cover"
-                            borderRadius="lg"
-                        />
                     </m.div>
                 </AnimatePresence>
             </LazyMotion>
@@ -91,4 +82,4 @@ const PhotoBox = ({ photo }) => {
     )
 }
 
-export default PhotoBox
+export default LoadingPhotoBox

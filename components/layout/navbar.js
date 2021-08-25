@@ -16,7 +16,8 @@ import AddPhoto from "@/components/layout/addPhotoModal"
 
 const Links = [
     { key: "Gallery", text: "Gallery", href: "/" },
-    { key: "Reposirtory", text: "Repository", href: "https://github.com/cvrlnolan/real_estate" }
+    { key: "Slideshow", text: "Slideshow", href: "/slideshow" },
+    { key: "Reposirtory", text: "Repository", href: "https://github.com/cvrlnolan/photogallery" }
 ];
 
 const NavLink = ({ children, linkHoverColor, linkRef }) => (
@@ -39,7 +40,7 @@ const NavLink = ({ children, linkHoverColor, linkRef }) => (
 export default function Navbar({ children }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const linkColor = useColorModeValue('gray.600', 'gray.200');
-    const linkHoverColor = useColorModeValue('teal.700', 'teal.400');
+    const linkHoverColor = useColorModeValue('blue.700', 'blue.400');
 
     return (
         <>

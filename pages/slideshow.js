@@ -1,3 +1,4 @@
+import React from "react"
 import Head from "next/head"
 import { Container, useColorMode } from "@chakra-ui/react"
 import { ArrowForwardIcon } from "@chakra-ui/icons"

@@ -1,3 +1,4 @@
+import React from "react"
 import { Image } from "@chakra-ui/react"
 import { AnimatePresence, LazyMotion, domAnimation, m } from "framer-motion"
 

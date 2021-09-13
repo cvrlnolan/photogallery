@@ -1,3 +1,4 @@
+import React from "react"
 import { AnimatePresence, LazyMotion, domAnimation, m } from "framer-motion"
 
 const LoadingPhotoBox = () => {
